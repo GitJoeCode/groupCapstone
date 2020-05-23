@@ -1,14 +1,15 @@
         
+// $("#find-trails-btn").on("click", displayTrails())
 
-$("#find-trails-btn").on("click", displayTrails())
 
-
-function displayTrails() {
+$("#hike-form").on("submit", function(e) {
+  e.preventDefault()
   var city = $("#city-input").val().trim();
+  console.log(city);
   var locationApiKey = "2b834b61e85748619fd8bc16d0a7150e";
-  var area = "moorpark, CA"
+  // var area = "moorpark, CA"
 
-  var queryURL = "https://api.opencagedata.com/geocode/v1/json?q=" + area + "&key=" + locationApiKey;
+  var queryURL = "https://api.opencagedata.com/geocode/v1/json?q=" + city + "&key=" + locationApiKey;
   $.ajax({
       url: queryURL,
       method: "GET"
@@ -38,6 +39,17 @@ function displayTrails() {
           var trailName = response.trails[i].name;
           var link = response.trails[i].url;
           console.log(link);
+          var imgElement = `<a href= "${link}"> ${trailName} </a>`
+          console.log(imgElement);
+          // var linkTag = jQuery('<a/>', {
+          //                   id: link,
+          //                   href: link
+          //               })
+
+          // var output = $("a")
+          // output.attr("href", link);
+          // output.text(trailName);
+          // console.log(output);
           var trailSummary = response.trails[i].summary;
           var rating = response.trails[i].stars;
           var location = response.trails[i].location;
@@ -45,10 +57,10 @@ function displayTrails() {
           var pic = response.trails[i].imgSmall;
           
           var newRow = $("<tr>").append(
-          $("<td>").text(trailName).attr("href", link),
+          $("<td>").text(imgElement),
+          $("<td>").text(location),
           $("<td>").text(trailSummary),
           $("<td>").text(rating),
-          $("<td>").text(location),
           $("<td>").text(length),
           $("<td>").text(pic)
           );
@@ -59,4 +71,4 @@ function displayTrails() {
       });
 
     });
-}
+});

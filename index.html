@@ -14,14 +14,15 @@
 
     <div class="container">
         <h1>Hike Search</h1>
-    
-        <!-- This form will be where users input data about the movies -->
+
+
         <form id="hike-form">
-          <label for="city-input">City, State (of area you would like to find)</label>
-          <input type="text" id="city-input"><br>
-    
-          <!-- This button will trigger our AJAX call -->
-          <button class="btn btn-primary float-right" id="find-trails-btn">Submit</button>
+          <div class="form-group">
+            <label for="city-input">City, State (of area you would like to find)</label>
+            <input class="form-control" id="city-input" placeholder="Moorpark, CA" type="text">
+          </div>
+          
+          <button class="btn btn-primary float-right" type="submit" id="find-trails-btn">Submit</button>
         </form>
 
         <div id="location-info"></div>
