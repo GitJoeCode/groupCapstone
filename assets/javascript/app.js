@@ -1,6 +1,13 @@
         
 // $("#find-trails-btn").on("click", displayTrails())
-
+var difficultyScale = {
+  green: ["Easy", "green"],
+  greenBlue: "Easy/Intermediate",
+  blue: "Intermediate",
+  blueBlack: "Intermediate/Difficult",
+  black: "Difficult",
+  blackBlack: "Very Difficult"
+}
 
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
@@ -39,30 +46,37 @@ $("#hike-form").on("submit", function(e) {
           var trailName = response.trails[i].name;
           var link = response.trails[i].url;
           console.log(link);
-          var imgElement = `<a href= "${link}"> ${trailName} </a>`
-          console.log(imgElement);
-          // var linkTag = jQuery('<a/>', {
-          //                   id: link,
-          //                   href: link
-          //               })
-
-          // var output = $("a")
-          // output.attr("href", link);
-          // output.text(trailName);
-          // console.log(output);
+          var trailLink = $("<td>");
+            trailLink.html("<a href=" + link + ">" + trailName + "</a>");
+            trailLink.addClass("link");
           var trailSummary = response.trails[i].summary;
           var rating = response.trails[i].stars;
           var location = response.trails[i].location;
           var length = response.trails[i].length;
           var pic = response.trails[i].imgSmall;
+          var picLink = $("<td>");
+            picLink.html("<a href=" + pic + ">Picture Preview</a>")
+            picLink.addClass("link");
+          var difficulty = response.trails[i].difficulty;
+          // var x = 0;
+          // var difficultyColor = null;
+          // while (x<difficultyScale.length) {
+          //   if (difficulty == difficultyScale[x]) {
+          //     difficulty = difficultyScale[x]
+          //     // difficultyColor = difficultyScale[i].color
+          //     break;
+          //   }
+          //   x++;
+          // }
           
           var newRow = $("<tr>").append(
-          $("<td>").text(imgElement),
+          trailLink,
           $("<td>").text(location),
           $("<td>").text(trailSummary),
           $("<td>").text(rating),
           $("<td>").text(length),
-          $("<td>").text(pic)
+          picLink,
+          $("<td>").text(difficulty),
           );
 
           $("#hike-table > tbody").append(newRow);
