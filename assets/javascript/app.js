@@ -16,6 +16,18 @@ $("#hike-form").on("submit", function(e) {
   var locationApiKey = "2b834b61e85748619fd8bc16d0a7150e";
   // var area = "moorpark, CA"
 
+  var weatherApiKey = "33d50ec4a2dd0f93c123fd343f8b3925";
+  var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey;
+  $.ajax({
+      url: weatherURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      $("#temp").append(response.main.temp)
+      $("#temp").append(response.weather[0].main)
+      
+    });
+
   var queryURL = "https://api.opencagedata.com/geocode/v1/json?q=" + city + "&key=" + locationApiKey;
   $.ajax({
       url: queryURL,
@@ -29,6 +41,7 @@ $("#hike-form").on("submit", function(e) {
       lon = foundLon;
       console.log(lat);
       console.log(lon);
+
 
       var hikingApiKey = "200765577-d0ba766cf062a2c1a1bc41dbad732763";
       var maxDis = 50;
@@ -85,4 +98,5 @@ $("#hike-form").on("submit", function(e) {
       });
 
     });
+
 });
