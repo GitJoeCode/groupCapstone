@@ -74,7 +74,7 @@ $("#hike-form").on("submit", function(e) {
           $("<td>").text(location),
           $("<td>").text(trailSummary),
           $("<td>").text(rating),
-          $("<td>").text(length),
+          $("<td>").text(length + " miles"),
           picLink,
           $("<td>").text(difficulty),
           );
