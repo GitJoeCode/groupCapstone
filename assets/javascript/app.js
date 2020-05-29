@@ -11,8 +11,16 @@ var difficultyScale = {
 
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
-  var city = $("#city-input").val().trim();
+  var city = $("#city-input").val().trim() + "," + $("#state-input").val().trim();
+  var state = $("#state-input").val().trim()
   console.log(city);
+  var miles = $("#miles-input").val().trim()
+  var maxDis = 50;
+  if(miles != 0) {
+    maxDis = miles;
+  }
+
+
   var locationApiKey = "2b834b61e85748619fd8bc16d0a7150e";
   // var area = "moorpark, CA"
 
@@ -23,8 +31,8 @@ $("#hike-form").on("submit", function(e) {
       method: "GET"
     }).then(function(response) {
       console.log(response);
-      $("#temp").append(response.main.temp)
-      $("#temp").append(response.weather[0].main)
+      $("#weather-display").append(response.main.temp)
+      $("#weather-display").append(response.weather[0].main)
       
     });
 
@@ -44,7 +52,6 @@ $("#hike-form").on("submit", function(e) {
 
 
       var hikingApiKey = "200765577-d0ba766cf062a2c1a1bc41dbad732763";
-      var maxDis = 50;
       var queryURL = "https://www.hikingproject.com/data/get-trails?" + "lat=" + lat + "&lon=" + lon + "&maxDistance=" + maxDis + "&key=" + hikingApiKey;
       
       console.log(queryURL);
@@ -68,7 +75,7 @@ $("#hike-form").on("submit", function(e) {
           var length = response.trails[i].length;
           var pic = response.trails[i].imgSmall;
           var picLink = $("<td>");
-            picLink.html("<a href=" + pic + ">Picture Preview</a>")
+            picLink.html("<a href=" + "<img src=&quot" + pic + "&quot> alt=&quotpic&quot" + ">Picture Preview</a>")
             picLink.addClass("link");
           var difficulty = response.trails[i].difficulty;
           // var x = 0;
