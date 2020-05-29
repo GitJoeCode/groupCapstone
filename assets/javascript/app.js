@@ -12,7 +12,7 @@ var difficultyScale = {
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
   var city = $("#city-input").val().trim() + "," + $("#state-input").val().trim();
-  var state = $("#state-input").val().trim()
+  // var state = $("#state-input").val().trim()
   console.log(city);
   var miles = $("#miles-input").val().trim()
   var maxDis = 50;
