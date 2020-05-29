@@ -11,8 +11,10 @@ var difficultyScale = {
 
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
-  var city = $("#city-input").val().trim();
+  var city = $("#city-input").val().trim() + "," + $("#state-input").val().trim();
+  
   console.log(city);
+  
   var locationApiKey = "2b834b61e85748619fd8bc16d0a7150e";
   // var area = "moorpark, CA"
 
@@ -74,7 +76,7 @@ $("#hike-form").on("submit", function(e) {
           $("<td>").text(location),
           $("<td>").text(trailSummary),
           $("<td>").text(rating),
-          $("<td>").text(length),
+          $("<td>").text(length + " miles"),
           picLink,
           $("<td>").text(difficulty),
           );
