@@ -1,0 +1,43 @@
+body, html, .view {
+    height:100%;
+    background-size: cover;
+
+    background-position: center center;
+
+    background-repeat: no-repeat;
+
+    height: 100vh;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+      height: 1000px;
+      position: fixed;
+    }}
+
+    @media (min-width: 800px) and (max-width: 850px) {
+        html,
+        body,
+        header,
+        .view {
+          height: 600px;
+        }
+      }
+
+.sidenav {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 50%;
+  width: 300px;
+  
+  align-self: center;
+  top: 25%
+}
+
+.card {
+  overflow-y: scroll;
+  max-height: 500px;
+}
