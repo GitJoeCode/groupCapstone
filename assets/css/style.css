@@ -2,13 +2,15 @@ body, html {
     height:100%
 }
 
-.bg {
-    background-image:url("../images/background-image.jpg");
-
-    height: 100%;
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
+.sidenav {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 30%;
+  width: 10%;
+  align-self: center;
+  top: 25%
+}
+.card {
+  overflow-y: scroll;
+  max-height: 500px;
 }

@@ -11,9 +11,10 @@ var difficultyScale = {
 
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
-  var city = $("#city-input").val().trim() + "," + $("#state-input").val().trim();
-  // var state = $("#state-input").val().trim()
+  var city = $("#city-input").val().trim()
+  var state = $("#state-input").val().trim()
   console.log(city);
+  console.log(state);
   var miles = $("#miles-input").val().trim()
   var maxDis = 50;
   if(miles != 0) {
@@ -25,7 +26,7 @@ $("#hike-form").on("submit", function(e) {
   // var area = "moorpark, CA"
 
   var weatherApiKey = "33d50ec4a2dd0f93c123fd343f8b3925";
-  var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherApiKey;
+  var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&units=imperial&appid=" + weatherApiKey;
   $.ajax({
       url: weatherURL,
       method: "GET"
