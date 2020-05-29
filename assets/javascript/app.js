@@ -9,6 +9,26 @@ var difficultyScale = {
   blackBlack: "Very Difficult"
 }
 
+
+var sort = "quality";
+var searchResults = "Quality";
+$('.form-check').click(function() {
+    if($("#rating").prop("checked")) {
+      sort = "quality";
+      searchResults = "Quality";
+    }
+    if($("#distance").prop("checked")) {
+      sort = "distance";
+      searchResults = "Distance";
+    }
+});
+
+// if($("#distance").option2==true) {
+//   sort = "distance";
+//   searchResults = "distance";
+// }
+
+
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
   var city = $("#city-input").val().trim()
@@ -53,7 +73,7 @@ $("#hike-form").on("submit", function(e) {
 
 
       var hikingApiKey = "200765577-d0ba766cf062a2c1a1bc41dbad732763";
-      var queryURL = "https://www.hikingproject.com/data/get-trails?" + "lat=" + lat + "&lon=" + lon + "&maxDistance=" + maxDis + "&key=" + hikingApiKey;
+      var queryURL = "https://www.hikingproject.com/data/get-trails?" + "lat=" + lat + "&lon=" + lon + "&maxDistance=" + maxDis + "&sort=" + sort + "&key=" + hikingApiKey;
       
       console.log(queryURL);
 
@@ -62,6 +82,9 @@ $("#hike-form").on("submit", function(e) {
         method: "GET"
       }).then(function(response) {
         // $("#hike-options").text(JSON.stringify(response));
+        var searchRow = $("<div>").html(" (Results sorted by " + searchResults + ")")
+        $("#trailSearchType").append(searchRow);
+
         for(i=0; i<response.trails.length; i++) {
           console.log(response.trails[i]);
           var trailName = response.trails[i].name;
@@ -75,8 +98,10 @@ $("#hike-form").on("submit", function(e) {
           var location = response.trails[i].location;
           var length = response.trails[i].length;
           var pic = response.trails[i].imgSmall;
+          // var picLarge
+          console.log(pic);
           var picLink = $("<td>");
-            picLink.html("<a href=" + "<img src=&quot" + pic + "&quot> alt=&quotpic&quot" + ">Picture Preview</a>")
+            picLink.html("<a href=" + pic + ">" + "<img src=" + JSON.stringify(pic) + ">" + "</a>")
             picLink.addClass("link");
           var difficulty = response.trails[i].difficulty;
           // var x = 0;
@@ -89,7 +114,7 @@ $("#hike-form").on("submit", function(e) {
           //   }
           //   x++;
           // }
-          
+
           var newRow = $("<tr>").append(
           trailLink,
           $("<td>").text(location),
@@ -102,6 +127,8 @@ $("#hike-form").on("submit", function(e) {
 
           $("#hike-table > tbody").append(newRow);
         }
+
+        
 
       });
 
