@@ -31,6 +31,11 @@ $('.form-check').click(function() {
 
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
+  $("#hike-table tbody").empty();
+  $("#trailSearchType").empty();
+  $("#weather-display").empty();
+  $("#weather-img").empty();
+  $("#weather-city").empty();
   var city = $("#city-input").val().trim()
   var state = $("#state-input").val().trim()
   console.log(city);
@@ -51,10 +56,34 @@ $("#hike-form").on("submit", function(e) {
       url: weatherURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
-      $("#weather-display").append(response.main.temp)
-      $("#weather-display").append(response.weather[0].main)
       
+      var weatherImg = response.weather[0].main
+      if (weatherImg == "Clear") {
+        weatherImg = "<i class='em em-sunny' aria-role='presentation' aria-label='BLACK SUN WITH RAYS'></i>"
+      }
+      if (weatherImg == "Drizzle") {
+        weatherImg = '<i class="em em-rain_cloud" aria-role="presentation" aria-label=""></i>'
+      }
+      if (weatherImg == "Rain") {
+        weatherImg = '<i class="em em-rain_cloud" aria-role="presentation" aria-label=""></i>'
+      }
+      if (weatherImg == "Thunderstorm") {
+        weatherImg = '<i class="em em-thunder_cloud_and_rain" aria-role="presentation" aria-label=""></i>'
+      }
+      if (weatherImg == "Snow") {
+        weatherImg = '<i class="em em-snow_cloud" aria-role="presentation" aria-label=""></i>'
+      };
+      if (weatherImg == "Clouds") {
+        weatherImg = '<i class="em em-cloud" aria-role="presentation" aria-label="CLOUD"></i>'
+      }
+      
+
+
+      console.log(response);
+      $("#weather-display").append(response.main.temp + "°F")
+      $("#weather-img").append(weatherImg)
+      $("#weather-city").append("The Current Weather for " + city + "," + state + " is:")
+
     });
 
   var queryURL = "https://api.opencagedata.com/geocode/v1/json?q=" + city + "&key=" + locationApiKey;
@@ -104,16 +133,25 @@ $("#hike-form").on("submit", function(e) {
             picLink.html("<a href=" + pic + ">" + "<img src=" + JSON.stringify(pic) + ">" + "</a>")
             picLink.addClass("link");
           var difficulty = response.trails[i].difficulty;
-          // var x = 0;
-          // var difficultyColor = null;
-          // while (x<difficultyScale.length) {
-          //   if (difficulty == difficultyScale[x]) {
-          //     difficulty = difficultyScale[x]
-          //     // difficultyColor = difficultyScale[i].color
-          //     break;
-          //   }
-          //   x++;
-          // }
+          if (difficulty == "blue") {
+             difficulty = "Intermediate"
+           };
+          if (difficulty == "blueBlack") {
+             difficulty = "Intermediate/Difficult"
+           };
+          if (difficulty == "green") {
+            difficulty = "Easy"
+          };
+          if (difficulty == "greenBlue") {
+            difficulty = "Easy/Intermediate"
+          };
+          if (difficulty == "black") {
+            difficulty = "Difficult"
+          };
+          if (difficulty == "blackBlack") {
+            difficulty = "Extremely Difficult"
+          };
+          
 
           var newRow = $("<tr>").append(
           trailLink,
