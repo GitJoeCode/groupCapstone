@@ -2,15 +2,71 @@ body, html {
     height:100%
 }
 
+.view {
+  height: 100%;
+}
+
 .sidenav {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.4);
-  height: 30%;
+  height: 35%;
   width: 10%;
   align-self: center;
   top: 25%
 }
-.card {
+#trail-display {
   overflow-y: scroll;
   max-height: 500px;
+}
+
+.em {
+  font-size: 70px;
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+#weather-display {
+  font-size: 40px;
+  margin-left: 20px;  
+  font-weight: bold;
+}
+
+#weather-city {
+  font-weight: bold;
+}
+
+.form-check {
+  background-color: white;
+  width: 20%
+  
+}
+
+#miles-input {
+  width: 40%;
+  margin-top: 15px;
+  
+
+}
+
+#city-input {
+  width: 45%;
+  float: left;
+ 
+}
+
+#state-input {
+  width: 30%;
+  float: left;
+  
+}
+
+#find-trails-btn {
+  margin-right: 80%;
+}
+
+#input-form {
+  width: 50%
 }

@@ -1,12 +1,14 @@
 <!doctype html>
 
 <html>
-
+<meta charset="UTF-8"> 
 <head>
 
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
 <title>Happy Trailin'</title>
 
@@ -19,9 +21,14 @@
   
     <div class="view" style="background-image: url('assets/images/background-image.jpg'); background-attachment: fixed; background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
-    <div class ="sidenav" id="weather-display">
-        <a img="" id = "weather-img">
-        <a>The weather is:  
+    <div class ="sidenav" id="weather-sidebar">
+        <a id= "weather-city"></a>
+        <br>
+        <i id ="weather-img"></i>
+        <br>
+        <a id="weather-display"></a>
+
+  
         
 
       </div>  
@@ -29,11 +36,14 @@
       <div class="container">
     
         <h1>Hike Search</h1>
+        <br>
 
+        <p>Enter the City and State of a trail you would like to find.</p>        
 
+        <div class= "card" id= "input-form">
         <form id="hike-form">
           <div class="form-group">
-            <label for="city-input">City, State (of area you would like to find)</label>
+            <label for="city-input"></label>
             <input class="form-control" id="city-input" placeholder="Moorpark" type="text">
             <select class="form-control" id="state-input" name="state">
         
@@ -91,28 +101,32 @@
               <option value="Wyoming">Wyoming</option>
             </select>
 
-            <input class="form-control" id="miles-input" placeholder="50 (will search within 50 miles of search city if left blank)" type="number">
+            <input class="form-control" id="miles-input" placeholder="Distance from City (Miles)" type="number">
           
+            <div class="form-check">Sort By:<br>
+            
+              <label class="form-check-label" for="distance">
+                
+              </label>
+
+              <input class="form-check-input" type="radio" name="exampleRadios" id="distance" value="option2" name="distance" checked>Distance
+            </div>
             <div class="form-check">
               <label class="form-check-label" for="rating">
-                Sort Results by Rating (default)
+              
               </label>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="rating" value="option1" name="rating" checked>
-            <div class="form-check">
-              <label class="form-check-label" for="distance">
-                Sort Result by distance (from search city)
-              </label>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="distance" value="option2" name="distance">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="rating" value="option1" name="rating">Quality
             </div>
 
 
-            </div>
+            
 
             <button class="btn btn-primary float-right" type="submit" id="find-trails-btn">Submit</button>
           </div>
           
           
         </form>
+      </div>
 
         
 
@@ -130,8 +144,9 @@
   
         <div class="col-md-12">
   
-          <div class="card mb-4">
-            <div class="card-header" id="trailSearchType">Hiking Trails</div>
+          <div class="card mb-4" id="trail-display">
+            <div class="card-header" id="trailTitlee">Hiking Trails</div>
+            <div class="card-header" id="trailSearchType"></div>
             <div class="card-body">
               <table class="table table-sm table-hover" id='hike-table'>
                 <thead>
@@ -139,7 +154,7 @@
                     <th scope="col">Trail Name</th>
                     <th scope="col">Trail Location</th>
                     <th scope="col">Summary</th>
-                    <th scope="col">Rating</th>
+                    <th scope="col">User Rating</th>
                     <th scope="col">Length</th>
                     <th scope="col">Picture Preview</th>
                     <th scope="col">Difficulty</th>
