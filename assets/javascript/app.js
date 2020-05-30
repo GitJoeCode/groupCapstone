@@ -1,5 +1,5 @@
         
-// $("#find-trails-btn").on("click", displayTrails())
+
 var difficultyScale = {
   green: ["Easy", "green"],
   greenBlue: "Easy/Intermediate",
@@ -23,11 +23,6 @@ $('.form-check').click(function() {
     }
 });
 
-// if($("#distance").option2==true) {
-//   sort = "distance";
-//   searchResults = "distance";
-// }
-
 
 $("#hike-form").on("submit", function(e) {
   e.preventDefault()
@@ -48,7 +43,7 @@ $("#hike-form").on("submit", function(e) {
 
 
   var locationApiKey = "2b834b61e85748619fd8bc16d0a7150e";
-  // var area = "moorpark, CA"
+
 
   var weatherApiKey = "33d50ec4a2dd0f93c123fd343f8b3925";
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&units=imperial&appid=" + weatherApiKey;
@@ -91,7 +86,7 @@ $("#hike-form").on("submit", function(e) {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      // $("#location-info").text(JSON.stringify(response));
+     
     
       var foundLat = response.results[0].geometry.lat.toFixed(4);
       var foundLon = response.results[0].geometry.lng.toFixed(4);
@@ -100,9 +95,11 @@ $("#hike-form").on("submit", function(e) {
       console.log(lat);
       console.log(lon);
 
+    
+
 
       var hikingApiKey = "200765577-d0ba766cf062a2c1a1bc41dbad732763";
-      var queryURL = "https://www.hikingproject.com/data/get-trails?" + "lat=" + lat + "&lon=" + lon + "&maxDistance=" + maxDis + "&sort=" + sort + "&key=" + hikingApiKey;
+      var queryURL = "https://www.hikingproject.com/data/get-trails?" + "lat=" + lat + "&lon=" + lon + "&maxDistance=" + maxDis + "&maxResults" + "&sort=" + sort + "&key=" + hikingApiKey;
       
       console.log(queryURL);
 
@@ -110,7 +107,7 @@ $("#hike-form").on("submit", function(e) {
         url: queryURL,
         method: "GET"
       }).then(function(response) {
-        // $("#hike-options").text(JSON.stringify(response));
+        
         var searchRow = $("<div>").html(" (Results sorted by " + searchResults + ")")
         $("#trailSearchType").append(searchRow);
 
