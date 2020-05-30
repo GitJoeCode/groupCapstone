@@ -127,10 +127,10 @@ $("#hike-form").on("submit", function(e) {
           var location = response.trails[i].location;
           var length = response.trails[i].length;
           var pic = response.trails[i].imgSmall;
-          // var picLarge
+          var picLarge = response.trails[i].imgMedium;
           console.log(pic);
           var picLink = $("<td>");
-            picLink.html("<a href=" + pic + ">" + "<img src=" + JSON.stringify(pic) + ">" + "</a>")
+            picLink.html("<a href=" + picLarge + ">" + "<img src=" + JSON.stringify(pic) + ">" + "</a>")
             picLink.addClass("link");
           var difficulty = response.trails[i].difficulty;
           if (difficulty == "blue") {
