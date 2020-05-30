@@ -36,11 +36,14 @@
       <div class="container">
     
         <h1>Hike Search</h1>
+        <br>
 
+        <p>Enter the City and State of a trail you would like to find.</p>        
 
+        <div class= "card" id= "input-form">
         <form id="hike-form">
           <div class="form-group">
-            <label for="city-input">City, State (of area you would like to find)</label>
+            <label for="city-input"></label>
             <input class="form-control" id="city-input" placeholder="Moorpark" type="text">
             <select class="form-control" id="state-input" name="state">
         
@@ -98,28 +101,29 @@
               <option value="Wyoming">Wyoming</option>
             </select>
 
-            <input class="form-control" id="miles-input" placeholder="How far from city (will search within 50 miles of search city if left blank)" type="number">
+            <input class="form-control" id="miles-input" placeholder="Distance from City" type="number">
           
-            <div class="form-check">
+            <div class="form-check">Sort By:<br>
               <label class="form-check-label" for="rating">
-                Sort Results by Rating (default)
+              
               </label>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="rating" value="option1" name="rating" checked>
-            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="rating" value="option1" name="rating" checked>Rating
+            </div><div class="form-check">
               <label class="form-check-label" for="distance">
-                Sort Result by distance (from search city)
+                
               </label>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="distance" value="option2" name="distance">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="distance" value="option2" name="distance">Distance
             </div>
 
 
-            </div>
+            
 
             <button class="btn btn-primary float-right" type="submit" id="find-trails-btn">Submit</button>
           </div>
           
           
         </form>
+      </div>
 
         
 
@@ -137,7 +141,7 @@
   
         <div class="col-md-12">
   
-          <div class="card mb-4">
+          <div class="card mb-4" id="trail-display">
             <div class="card-header" id="trailTitlee">Hiking Trails</div>
             <div class="card-header" id="trailSearchType"></div>
             <div class="card-body">
