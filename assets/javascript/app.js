@@ -10,8 +10,8 @@ var difficultyScale = {
 }
 
 
-var sort = "quality";
-var searchResults = "Quality";
+var sort = "distance";
+var searchResults = "Distance";
 $('.form-check').click(function() {
     if($("#rating").prop("checked")) {
       sort = "quality";
